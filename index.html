@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>vb_4.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="0-vba-%E3%81%AE%E8%B3%87%E6%A0%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">0. VBA の資格について</h1>
+<h2 id="%E2%97%8Fvba-%E3%82%A8%E3%82%AD%E3%82%B9%E3%83%91%E3%83%BC%E3%83%88">●VBA エキスパート</h2>
+<p>オデッセイコミュニケーションズが主催する「VBA エキスパート」という<br>
+試験があります。試験科目には 「Excel VBA ベーシック」と 「Excel VBA<br>
+スタンダード」 の 2 種類があり、本稿はスタンダードを対象としています。</p>
+<br>
+<h3 id="%E2%97%8Fvba-%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%89">●VBA スタンダード</h3>
+<p>以下の内容が試験の基本情報となります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">項目</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">出題数</td>
+<td style="text-align:left">40 問前後(CBT 方式)</td>
+</tr>
+<tr>
+<td style="text-align:left">出題形式</td>
+<td style="text-align:left">選択問題、穴埋め記述</td>
+</tr>
+<tr>
+<td style="text-align:left">試験時間</td>
+<td style="text-align:left">50 分</td>
+</tr>
+<tr>
+<td style="text-align:left">合格基準</td>
+<td style="text-align:left">65%～ 80%以上</td>
+</tr>
+<tr>
+<td style="text-align:left">受験料</td>
+<td style="text-align:left">14,850 円</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<h3 id="%E5%87%BA%E9%A1%8C%E5%BD%A2%E5%BC%8F%E4%BE%8B">(出題形式例)</h3>
+<img src="Select.PNG">
+<p><br><br></p>
+<img src="Select2.PNG">
+<p><br><br></p>
+<img src="dropdown.PNG">
+<p><br><br></p>
+<img src="clickselect.PNG">
+<p><br><br></p>
+<img src="dragdrop.PNG">
+<p><br><br></p>
+<img src="fillhole.PNG">
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E5%87%BA%E9%A1%8C%E7%AF%84%E5%9B%B2">● 出題範囲</h3>
+<ol>
+<li>プロシージャ</li>
+</ol>
+<ul>
+<li>複数のプロシージャ</li>
+<li>Call ステートメント</li>
+<li>値の共有</li>
+<li>Function プロシージャ</li>
+</ul>
+<ol start="2">
+<li>変数の活用</li>
+</ol>
+<ul>
+<li>データの個数を数える、値を合計する</li>
+<li>配列</li>
+<li>オブジェクト変数</li>
+</ul>
+<ol start="3">
+<li>ステートメント</li>
+</ol>
+<ul>
+<li>Select Case ステートメント</li>
+<li>Do...Loop ステートメント</li>
+<li>For Each...Next ステートメント</li>
+<li>その他のステートメント</li>
+</ul>
+<ol start="4">
+<li>ファイルの操作</li>
+</ol>
+<ul>
+<li>ファイルの操作</li>
+<li>フォルダの操作</li>
+<li>文字列操作によるパスの指定</li>
+</ul>
+<ol start="5">
+<li>ワークシート関数の利用</li>
+</ol>
+<ul>
+<li>WorksheetFunction オブジェクト</li>
+</ul>
+<ol start="6">
+<li>検索とオートフィルター</li>
+</ol>
+<ul>
+<li>検索の基本</li>
+<li>見つからなかったときの判定</li>
+<li>検索したセルを使う</li>
+<li>オートフィルターの基本</li>
+<li>絞り込んだ結果のコピーとカウント</li>
+<li>絞り込んだ結果の編集</li>
+</ul>
+<ol start="7">
+<li>データの並べ替え</li>
+</ol>
+<ul>
+<li>簡単な条件の並べ替え</li>
+<li>複雑な条件の並べ替え</li>
+<li>特殊な並べ替え</li>
+<li>文字列の並べ替え</li>
+<li>フリガナの操作</li>
+</ul>
+<ol start="8">
+<li>テーブルの操作：テーブル</li>
+</ol>
+<ul>
+<li>テーブルとは何か</li>
+<li>テーブルの特定</li>
+<li>テーブル部位の特定</li>
+<li>テーブル操作の例</li>
+</ul>
+<ol start="9">
+<li>エラー対策</li>
+</ol>
+<ul>
+<li>On Error ステートメント</li>
+<li>エラーが起きないデータに整える</li>
+</ul>
+<ol start="10">
+<li>デバッグ</li>
+</ol>
+<ul>
+<li>Debug.Print</li>
+<li>イミディエイトウインドウ</li>
+<li>ブレークポイントとステップ実行</li>
+</ul>
+<br>
+<p>VBA エキスパートの説明は以上となります。受験を検討されている場合は、<br>
+相談いただければと思います。</p>
+<br>
+<h2 id="%E2%97%8F-%E5%AD%A6%E7%BF%92%E9%96%8B%E5%A7%8B%E5%89%8D%E3%81%AE%E8%A8%AD%E5%AE%9A">● 学習開始前の設定</h2>
+<p><br><br><br></p>
+<h3 id="1vbe-%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E8%A8%AD%E5%AE%9A">(1)VBE のオプション設定</h3>
+<p>VBE 上部から、ツール &gt; オプション &gt; エディターの設定 をクリックします。<br>
+その後、以下の項目の値を変更しましょう。</p>
+<blockquote>
+<p>・標準コード　 前景：黄緑　 背景：黒<br>
+・コメント　　 前景：黄緑　 背景：黒<br>
+・キーワード　 前景：水色　 背景：黒<br>
+・識別子　　　 前景：白　　 背景：黒</p>
+</blockquote>
+<br>
+<h3 id="2%E5%A4%89%E6%95%B0%E5%AE%A3%E8%A8%80%E3%81%AE%E5%BC%B7%E5%88%B6">(2)変数宣言の強制</h3>
+<p>ツール &gt; オプション &gt; 編集タブ &gt; 変数の宣言を強制する(R)をチェック<br>
+標準モジュールを右クリック後に標準モジュールを挿入し、Option Explicit の<br>
+記述がある事を確認する。</p>
+<br>
+<h3 id="3%E5%85%A8%E3%82%AF%E3%83%AA%E3%82%A2%E3%81%AE%E3%83%9E%E3%82%AF%E3%83%AD">(3)全クリアのマクロ</h3>
+<p>次章からの演習を行った際の結果を削除する場合、以下のマクロを実行すると便利です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> AllClear()
+    Cells.Clear
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<hr>
+<p><br><br><br></p>
+<h1 id="1-%E3%82%BB%E3%83%AB%E3%81%AE%E6%A4%9C%E7%B4%A2">1. セルの検索</h1>
+<p>ワークシート上の値に処理を実施する際は、目的のデータを特定する<br>
+必要があります。多くの場合はセルの検索を行い、そこからデータの<br>
+処理に移行します。この章では、セルの検索について学習しましょう。</p>
+<br>
+<img src="find.png">
+<p><br><br></p>
+<h3 id="%E2%97%8Ffind-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E5%BC%95%E6%95%B0">●Find メソッドと引数</h3>
+<p>セルの値を検索する際には Find メソッドを利用します。Find メソッドは、<br>
+9 種類の引数を指定する事でより詳細な検索を実現します。以下の内容を<br>
+確認しましょう。</p>
+<blockquote>
+<p>(1) <mark>What</mark>：検索語句<br>
+(2) After：検索開始の起点セル<br>
+(3) LookIn：検索対象(値、数式など)<br>
+(4) <mark>LookAt</mark>：検索精度 → 完全一致：xlWhole, 部分一致：xlPart<br>
+(5) SearchOrder：検索の方向(右か下か)<br>
+(6) SearchDirection：検索の向き(次か前か)<br>
+(7) MatchCase：大文字と小文字の区別<br>
+(8) MatchByte：半角と全角の区別<br>
+(9) SearchFormat：書式を検索条件に含めるかどうか<br></p>
+</blockquote>
+<p>上記の中で、必須となる引数は (1)What のみです。また、(4)LookAt は<br>
+前回処理の値が記憶されるため、都度指定する方が望ましいです。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8Ffind-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">●Find メソッドの使い方</h3>
+<p>Find メソッドの対象は Range オブジェクトです。対象の Range オブジェクトは、<br>
+「Range(&quot;A1:A9&quot;)」のような特定のセル範囲や、「Range(&quot;B:B&quot;)」のような<br>
+B 列全て、「Columns(1)」と記述する全列など、様々な範囲を指定できます。</p>
+<p>Find メソッドで対象範囲を検索した結果、条件に一致した値があった場合は<br>
+該当セルの位置情報(Range オブジェクト)を返します。そのため、Find メソッドを<br>
+用いて検索する際は オブジェクト変数を宣言し、値を格納します。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E6%A4%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E3%81%8C%E8%A6%8B%E3%81%A4%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%BF%9C">● 検索結果が見つからない場合の対応</h3>
+<p>セル検索を行った場合、該当条件のデータが見つからない場合もあります。<br>
+この時、Find オブジェクトは Nothing という値を返します。そのため、<br>
+見つからなかった際はオブジェクト変数に Nothing が格納される事を利用して、<br>
+If ステートメントで見つからなかった場合のマクロを記述する事ができます。</p>
+<p>次の演習で記述方法を学習しましょう。</p>
+<br>
+<hr>
+<p><br><br><br></p>
+<h1 id="2%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%B8%A6%E3%81%B3%E6%9B%BF%E3%81%88">2.データの並び替え</h1>
+<p>オートフィルタは所定のセル範囲に対して並び替えを実行する機能です。<br>
+また、オートフィルタを指定しなくてもメソッドを活用する事で、ワーク<br>
+シート上の値を並び替える事が可能です。その方法について学習しましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E4%B8%A6%E3%81%B9%E6%9B%BF%E3%81%88%E3%81%AE%E7%A8%AE%E9%A1%9E">● 並べ替えの種類</h3>
+<p>データの並べ替えを行う際は、下記 2 種類の方法があります。</p>
+<blockquote>
+<p>(1) Sort オブジェクト / SortField オブジェクト<br>
+(2) Sort メソッド</p>
+</blockquote>
+<p>(1)はより詳細な設定が可能で、(2)は設定が簡単といった違いがあります。<br>
+VBA エキスパート試験では両方の設問があるため、各々の特徴や引数<br>
+について、学習して行きましょう。</p>
+<br>
+<h4 id="1-sort-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88--sortfield-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">(1) Sort オブジェクト / SortField オブジェクト</h4>
+<p>主な引数・定数は以下の通りです。<br></p>
+<blockquote>
+<p>・Key：基準とする列(を含むセル) <br>
+・SortOn：並び替え条件 <br>
+・Order：昇順/降順 → xlAscending / xlDescending (デフォルトは昇順)<br>
+・DataOption：数値と文字列の区別 → デフォルトは行方向<br>
+・SetRange：並べ替えの範囲 → Range オブジェクトを指定<br>
+・Header：タイトル行の判定有無 → xlGuess(自動判定), xlYes(1 行目含まない), xlNo(1 行目含む)<br>
+・MatchCase：大文字と小文字の区別<br>
+・Orientation：行/列方向の並べ替えを指定<br>
+・SortMethod：日本語の並べ替え方法を指定<br>
+・Apply：並べ替えの実行(引数なし)<br></p>
+</blockquote>
+<p>また、SortField の設定は Excel に保存されるため、並び替えを実行する前に<br>
+Clear メソッドで初期化する必要があります。</p>
+<p>以下の演習を行い、感覚を掴んで行きましょう。</p>
+<p><br><br></p>
+<h4 id="2-sort-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">(2) Sort メソッド</h4>
+<p>主な引数・定数は以下の通りです。<br>
+・Key1：並べ替えの基準とする列(を含むセル) <br>
+・Order1：昇順/降順 → xlAscending / xlDescending<br>
+・Header：タイトル行の判定有無 → xlGuess(自動判定), xlYes(1 行目含まない), xlNo(1 行目含む)</p>
+<p>(1)と比較すると、引数が少ないため設定が簡単です。<br>
+複雑な並べ替え条件でなければ、Sort メソッドの利用がよいです。</p>
+<p>以下の演習を行い、Sort メソッドに慣れて行きましょう。</p>
+<p><br><br></p>
+<hr>
+<p><br><br><br></p>
+<h1 id="3-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E6%93%8D%E4%BD%9C">3. テーブルの操作</h1>
+<p>Excel をデータベースとして利用する際、テーブルの利用が可能です。<br>
+テーブルは並べ替えやフィルターといった機能を持ち、また、オブジェクト<br>
+として各種メソッドやプロパティの対象に指定できます。この章では、<br>
+テーブルの操作について学習しましょう。</p>
+<br>
+<img src="table.PNG">
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90">● テーブルの作成</h3>
+<p>テーブルは ListObject オブジェクトで設定が可能です。Add メソッドを<br>
+用いて引数を指定する事で、目的のテーブルを作成します。次の演習で<br>
+記述に慣れて行きましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを実行し、A1セルからD5セルをテーブルに指定しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> MakeTable1()
+    <span class="hljs-keyword">With</span> ActiveSheet.ListObjects.Add( _
+        SourceType:=xlSrcRange, _
+        Source:=Range(<span class="hljs-string">"$A$1:$D$4"</span>))
+        .Name = <span class="hljs-string">"Table1"</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・SourceType：作成するテーブルの種類<br>
+・xlSrcRange：セル範囲(規定値)<br>
+・Source：元データのセル範囲を指定<br>
+・Name：テーブルの名前<br>
+</div>
+<br>
+<p>今回はテーブルの枠のみを作成しましたが、実際はテーブルにデータが入っていて、<br>
+項目毎に並べ替えたりフィルターをかけたりします。次の項では、操作に必要な<br>
+テーブルオブジェクトの特定について、学習して行きます。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B">● テーブルを特定する</h3>
+<p>テーブルを操作する場合、対象(オブジェクト)として特定する必要があります。<br>
+特定方法として、以下の 2 つが主な指定先として挙げられます。</p>
+<blockquote>
+<p>(1) テーブル内のセル<br>
+(2) テーブル名<br></p>
+</blockquote>
+<p>記述としては、以下の通りです。<br></p>
+<blockquote>
+<p>(1) Range(&quot;セル番号&quot;).ListObject<br>
+(2) Range(&quot;テーブル名&quot;)<br></p>
+</blockquote>
+<p>今回は、(1)のセル指定の方法で学習して行きましょう。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E9%83%A8%E4%BD%8D">● テーブルの部位</h3>
+<p>テーブル自体がオブジェクトであり、各部位もオブジェクトとして指定できます。</p>
+<blockquote>
+<p>テーブル全体：ListObject.Range<br>
+データ全体：ListObject.DataBodyRange<br>
+タイトル：ListObject.HeaderRowRange<br>
+列：ListObject.ListColumns<br>
+行：ListObject.ListRows<br></p>
+</blockquote>
+<p>コピーや削除といった操作を行う場合は、これらのオブジェクトに対して<br>
+各種メソッド及びプロパティを紐づけて行きます。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%82%AA%E3%83%BC%E3%83%88%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF">● オートフィルタ</h3>
+<p>テーブルではオートフィルタ機能を使って、該当データを絞り込む事が可能です。<br>
+記述方式は、以下が基本となります。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> AutoFilterTest()
+    Range(<span class="hljs-string">"セル番号"</span>).ListObject.対象のテーブル範囲.AutoFilter 列番号 <span class="hljs-string">"条件"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>対象のテーブル範囲とは、上記のテーブル全体またはデータ全体を指します。</p>
+<p>次の演習を実行し、AutoFilter 並びにテーブル操作の感覚を掴んで行きましょう。</p>
+<p><br><br></p>
+<hr>
+<p><br><br><br></p>
+<h1 id="4-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E6%93%8D%E4%BD%9C">4. ファイルの操作</h1>
+<p>これまでのマクロ操作では、対象のオブジェクトはワークシートやセルでした。<br>
+この章では、Workbook を対象のオブジェクトとし、ファイル操作を学びましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%83%96%E3%83%83%E3%82%AF%E3%82%92%E9%96%8B%E3%81%8F">● ブックを開く</h3>
+<p>ブックを開く場合、Open メソッドを利用します。オブジェクトは Workbook<br>
+コレクションが対象となり、Opne メソッドの後には対象ファイルのディレクトリ<br>
+とファイル名を指定します。</p>
+<p>[基本構造]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> OpenTest()
+    Workbooks.Open <span class="hljs-string">"ディレクトリ\ファイル名.拡張子"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>次の演習を実施し、Open メソッドの記述を学びましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+(1)デスクトップにファイル名「VBA」を付けた Excelファイルを保存<br>
+(2)以下を参照してコードを作成し、マクロを実行する<br>
+</div>
+<br>
+<p>ディレクトリ名が分からない場合は、Excel ファイルを右クリックし、<br>
+プロパティ &gt; 場所で確認しましょう。<br>
+<a href="https://www.pc-master.jp/words/directory.html" target="_blank">ディレクトリとは</a></p>
+<p><br><br><br><br></p>
+<p>[解答例]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">' ディレクトリは利用環境によって異なります</span>
+<span class="hljs-keyword">Sub</span> OpenTest()
+    Workbooks.Open <span class="hljs-string">"C:\Users\(UserName)\Desktop\VBA.xlsx"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%83%96%E3%83%83%E3%82%AF%E3%82%92%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">● ブックを保存する</h3>
+<p>SaveAs メソッドを利用すると、アクティブなブックを保存できます。基本構造は<br>
+以下の通りです。</p>
+<p>[基本構造]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> SaveAsTest1()
+    ActiveWorkbook.SaveAs <span class="hljs-string">"ファイル名"</span> &amp; <span class="hljs-string">"拡張子"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>次の演習を実行しましょう。</p>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+開いている Excelファイルの名前を 年月日で保存するマクロを作成し、実行しましょう。<br>
+※ 演習1で作成した「VBA.xlsx」ファイルとは異なるファイルで実行する事
+</div>
+<p>以下に解答が記載されています。
+<br><br><br><br></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> SaveAsTest2()
+    ActiveWorkbook.SaveAs Year(Now) &amp; Month(Now) &amp; Day(Now) &amp; <span class="hljs-string">".xlsx"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC">● ファイルのコピー</h3>
+<p>FileCopy ステートメントでフォルダ内のファイルをコピーする事ができます。</p>
+<p>[基本構造]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> CopyFile()
+    FileCopy <span class="hljs-string">"保存元のディレクトリ/ファイル名"</span>, <span class="hljs-string">"保存する先のディレクトリ/ファイル名"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>なお、現在開いている編集中のファイルを FileCopy でコピーしようとすると、<br>
+70 番のエラーが表示されて実行できませんので、注意しましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E4%BD%9C%E6%88%90">● フォルダの作成</h3>
+<p>MkDir ステートメントを使うと、新規のフォルダの作成ができます。なお、<br>
+「Make Directory」の省略表記となります。</p>
+<p>[基本構造]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> MakeDirectory()
+    MkDir <span class="hljs-string">"ディレクトリ\フォルダ名"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>これらのステートメントを利用して、次の課題を実施しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+FileCopyステートメントとMkDirステートメントを利用して、デスクトップ配下に<br>
+「VBA」フォルダを作成し、演習1で作成した「VBA」ファイルをコピーしましょう。<br>
+ファイル名は「VBAコピー」で保存しましょう。
+</div>
+<br>
+<p>以下に解答が記載されています。
+<br><br><br><br></p>
+<pre class="hljs"><code><div><span class="hljs-comment">' ディレクトリは利用環境によって異なります</span>
+<span class="hljs-keyword">Sub</span> MakeDirectoryAndCopy()
+    MkDir <span class="hljs-string">"C:\Users\(UserName)\Desktop\VBA"</span>
+    FileCopy <span class="hljs-string">"C:\Users\(UserName)\Desktop\VBA.xlsx"</span>, <span class="hljs-string">"C:\Users\(UserName)\Desktop\VBA\VBAコピー.xlsx"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+</div></code></pre>
+<p><br><br></p>
+<hr>
+<p><br><br><br></p>
+<h1 id="5-%E3%82%A8%E3%83%A9%E3%83%BC%E5%AF%BE%E7%AD%96">5. エラー対策</h1>
+<p>マクロ実行中にエラーが発生するとそのマクロは停止します。VBA 記述時に<br>
+判明したエラーは修正しやすいですが、完成後の利用時に発生したエラーは<br>
+事前に対策が必要となります。この章ではエラー対策の方法を学びましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E7%A8%AE%E9%A1%9E">● エラーの種類</h3>
+<h4 id="1%E8%A8%98%E8%BF%B0%E3%82%A8%E3%83%A9%E3%83%BC">(1)記述エラー</h4>
+<p>「文字列をダブルクォーテーションで囲っていない」、「() &lt;&gt; . ,<br>
+などの記号が不足している」等、文法ミスがあった際に発生するエラーです。<br>
+この場合、VBE による文法チェックによってエラーは検知され、メッセージが<br>
+表示されます。</p>
+<br>
+<img src="write_error.PNG">
+<br>
+<img src="write_error2.PNG">
+<br>
+<img src="write_error4.PNG">
+<br>
+<img src="write_error5.PNG">
+<br>
+<p>上記のエラーメッセージには共通して「コンパイルエラー」の記載があります。<br>
+コンパイルとは、記述した VBA を Excel に認識される形に翻訳する事で、この<br>
+段階でミスが検知されると、コンパイルエラーとして表示されます。</p>
+<p>次の演習で、エラー修正の対応を練習を行いましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードには 7つのエラー要因があります。該当コードを修正し、<br>
+「1から10の偶数を赤色・フォントサイズ20にする」マクロを完成させましょう。<br>
+また、インデントも整えましょう。<br>
+・Mod演算子：左の数値を右の数値で割った余りを計算する<br>
+</div>
+<br>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorCorrection()
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">10</span>
+    Cell(i, <span class="hljs-number">1</span>)Value = i
+    <span class="hljs-keyword">If</span> i <span class="hljs-keyword">Mod</span> <span class="hljs-number">2</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">With</span> Cells(i, <span class="hljs-number">1</span>).Font
+    .Color = vbRed
+    .Size = <span class="hljs-number">20</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<p>※ 解答は以下のコードになります。</p>
+<p><br><br><br><br></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorCorrection()
+<span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">10</span>
+        Cells(i, <span class="hljs-number">1</span>).Value = i
+        <span class="hljs-keyword">If</span> i <span class="hljs-keyword">Mod</span> <span class="hljs-number">2</span> = <span class="hljs-number">0</span> <span class="hljs-keyword">Then</span>
+            <span class="hljs-keyword">With</span> Cells(i, <span class="hljs-number">1</span>).Font
+                .Color = vbRed
+                .Size = <span class="hljs-number">20</span>
+            <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+        <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+</div></code></pre>
+<p><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：修正箇所の解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+(1)変数の宣言<br>
+(2)Cell → Cells<br>
+(3)Valueプロパティの前に .<br>
+(4)If条件式の後ろに Then<br>
+(5)Withステートメントの終わりに End With<br>
+(6)Ifステートメントの終わりに End If<br>
+(7)Forステートメントの終わりに Next<br>
+</div>
+<p><br><br></p>
+<h4 id="2%E8%AB%96%E7%90%86%E3%82%A8%E3%83%A9%E3%83%BC">(2)論理エラー</h4>
+<p>「存在しないオブジェクトを指定する」など、論理的に矛盾する場合に発生します。<br>
+文法的にミスがないため、コンパイル時のエラーにはなりませんが、実行時に矛盾が<br>
+発生するため、実行時エラーとなって検知されます。</p>
+<p>ワークシート 2 が存在しない状態で以下のコードを実行すると、画像のエラーが発生<br>
+します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorTest1()
+    Worksheets(<span class="hljs-number">2</span>).Delete
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<img src="doerror1.PNG">
+<br>
+<p>実行時エラーの難しい所は、マクロ作成時には気付きにくい事、実行時の利用状況に<br>
+よってエラー発生の有無が変わる事です。例えば、上記コードはワークシート 2 が<br>
+あればエラーにはなりません。</p>
+<p>そのため、予期せぬエラーが発生した場合でもマクロが中断しないような記述が<br>
+必要となってきます。</p>
+<br>
+<h3 id="%E2%97%8F-on-error-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">● On Error ステートメント</h3>
+<p>もしエラーが発生した際に処理を迂回させる方法に、On Error ステートメントが<br>
+利用できます。この構文は、エラー発生時に指定した先に処理を飛ばす事が可能です。</p>
+<p>[基本構造]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorTest2()
+    <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> <span class="hljs-keyword">Goto</span> Error1
+        処理<span class="hljs-number">1</span>
+        処理<span class="hljs-number">2</span>
+    Error1:
+        処理<span class="hljs-number">3</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>処理 1 または処理 2 でエラーが発生した場合は、Error1 にジャンプして処理 3 が実行されます。<br>
+また、Error1 の事をラベルと呼びます。ラベル以外でのエラー回避策として、エラーを無視<br>
+して処理を続ける Resume Next という記述方法もあります。</p>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードは、エラーが発生してもエラーを無視して処理を続け、メッセージを表示する<br>
+マクロである。空欄に入る適切な語句を入力しなさい。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorTest3()
+    <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> 【      】 Error1
+    Worksheets(<span class="hljs-number">2</span>).delete
+【      】
+    MsgBox <span class="hljs-string">"ワークシートがありません"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>答えは下記の通りです。</p>
+<p><br><br><br><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">解答</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Goto<br>
+・Error1:<br>
+</div>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E6%A4%9C%E7%9F%A5">● エラーの検知</h3>
+<p>エラー発生時に処理をラベルへ飛ばす On Error ステートメントと、プロシージャを終了<br>
+させる Exit ステートメントを組み合わせると、エラー発生の有無で実行処理が分岐する<br>
+マクロを記述する事ができます。</p>
+<p>次の演習を実行し、記述に慣れて行きましょう。</p>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを実行し、結果を確認しましょう。<br>
+確認したら、別の結果が得られるようワークシート上のデータを変更し、再度実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorTest4()
+    <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> <span class="hljs-keyword">Goto</span> Error1
+        Worksheets(<span class="hljs-number">1</span>).Name = Range(<span class="hljs-string">"A1"</span>)
+        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span>
+    Error1:
+        MsgBox <span class="hljs-string">"エラー発生。原因を確認して下さい"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Exit Sub：プロシージャを終了させる。<br>
+</div>
+<p><br><br></p>
+<h3 id="%E2%97%8F-err-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">● Err オブジェクト</h3>
+<p>エラーが発生した場合、そのエラーの情報は Err オブジェクトに格納されます。<br>
+そのため、Err オブジェクトに対してプロパティを紐づけると、エラー内容に<br>
+ついて調べる事ができます。以下はその一例です。</p>
+<blockquote>
+<p>・Number プロパティ：エラー番号を返す<br>
+・Description プロパティ：エラーメッセージを返す<br>
+・Clear メソッド：エラー情報の削除<br></p>
+</blockquote>
+<p>特に Number プロパティを使用した場合、エラーが発生した場合は 0 以外の<br>
+値になるため、If ステートメントとの組み合わせが利用しやすいです。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次の空欄をそれぞれ埋めて、エラー発生時もマクロの実行が止まらず、エラー発生が<br>
+表示されるコードを完成させましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorTest5()
+    <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> 【      】
+    Worksheets(<span class="hljs-number">2</span>).Delete
+    <span class="hljs-keyword">If</span> 【      】.【      】 &lt;&gt; <span class="hljs-number">0</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"エラーが発生"</span>
+        MsgBox Err.Number
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>以下に回答を記載しています。</p>
+<p><br><br><br><br><br></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> ErrorTest5()
+    <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> <span class="hljs-keyword">Resume</span> <span class="hljs-keyword">Next</span>
+    Worksheets(<span class="hljs-number">2</span>).Delete
+    <span class="hljs-keyword">If</span> Err.Number &lt;&gt; <span class="hljs-number">0</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"エラーが発生しました"</span>
+        MsgBox Err.Number
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Resume Next：エラー発生を無視する<br>
+・Err.Number：発生したエラーコードを取得<br>
+・If ～ <> 0 Then：条件式の値が 0以外は Then以降を実行する<br>
+</div>
+<p><br><br></p>
+<hr>
+<p><br><br><br></p>
+<h1 id="6-%E3%83%87%E3%83%90%E3%83%83%E3%82%B0">6. デバッグ</h1>
+<p>プログラムに含まれるミスを探して修正する作業をデバッグと言います。<br>
+この章では、VBE で利用できるデバッグ機能について学んで行きます。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E3%83%A2%E3%83%BC%E3%83%89">● デバッグモード</h3>
+<p>5 章で解説した論理エラーには「実行時エラー」があり、発生した場合は<br>
+エラーメッセージが表示されます。この時、ウインドウのデバッグボタンを<br>
+押すと、デバッグモードに移行します。デバッグモードでは、マクロが<br>
+一時停止しているため、エラーの原因を調べる事が出来ます。</p>
+<p>以下に実行時エラーの代表例を記載します。</p>
+<br>
+<img src="error13.PNG">
+<br>
+Option Explicit 設定時に型宣言がない場合に発生。
+<p><br><br></p>
+<img src="doerror1.PNG">
+<br>
+対象のオブジェクトが存在しない場合等に発生。
+<br>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%82%A4%E3%83%9F%E3%83%87%E3%82%A3%E3%82%A8%E3%82%A4%E3%83%88%E3%82%A6%E3%82%A4%E3%83%B3%E3%83%89%E3%82%A6">● イミディエイトウインドウ</h3>
+<img src="immediate.PNG">
+<br>
+<p>デバッグモードに移行後はマクロが停止した状態のため、プロシージャを<br>
+動かす事が出来ません。そのため、Cntrl + G でイミディエイトウインドウ<br>
+を呼び出し、変数の確認などを行ってエラーの原因を特定します。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%A4%E3%83%9F%E3%83%87%E3%82%A3%E3%82%A8%E3%82%A4%E3%83%88%E3%82%A6%E3%82%A4%E3%83%B3%E3%83%89%E3%82%A6%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">● イミディエイトウインドウの使い方</h3>
+<p>イミディエイトウインドウには、以下の特徴があります。<br>
+(1) イミディエイトウインドウ上でマクロを実行できる<br>
+(2) ワークシートに結果を反映させられる<br></p>
+<p>イミディエイトウインドウにマクロの結果を表示させるには、<br></p>
+<blockquote>
+<p>・プロシージャ上で Debug.Print を実行<br>
+・イミディエイトウインドウ上で実行処理<br>
+・？をつけて、イミディエイトウインドウ上で命令文を実行<br></p>
+</blockquote>
+<p>上記の方法が使用できます。<br>
+次の演習を実施し、操作に慣れて行きましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、結果をイミディエイトウインドウやワークシートに表示させましょう。<br>
+※ イミディエイトウインドウの命令文は 1行ずつ Enterを押す事で順次実行されます。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> Immediate()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-number">100</span>
+    Debug.Print Range(<span class="hljs-string">"A1"</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<p>[イミディエイトウインドウ]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">'1行ずつEnterで実行</span>
+?range(<span class="hljs-string">"a1"</span>).Value
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">'1行ずつEnterで実行</span>
+b = <span class="hljs-number">50</span>
+range(<span class="hljs-string">"b1"</span>).Value = b
+?range(<span class="hljs-string">"b1"</span>).Value
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Debug.Print：イミディエイトウインドウに結果を表示<br>
+・?range("a1").Value：A1セルの値を呼び出し<br>
+</div>
+<br>
+<p>また、イミディエイトウインドウで実行した 変数 b への値の格納は、宣言を<br>
+行っていませんがエラーになりません。これは「暗黙の宣言」と呼ばれ、<br>
+Option Explicit の制御がイミディエイトウインドウに反映されない為です。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%83%9E%E3%82%AF%E3%83%AD%E3%81%AE%E4%B8%80%E6%99%82%E5%81%9C%E6%AD%A2">● マクロの一時停止</h3>
+<p>デバッグモードに移行せずマクロを一時停止にするには、以下 2 つの方法があります。</p>
+<h4 id="1-%E3%83%96%E3%83%AC%E3%83%BC%E3%82%AF%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">(1) ブレークポイント</h4>
+<p>プロシージャ内のコードを選択し、F9 キーを押すと該当行がブレークポイントに<br>
+指定されます。(クリックで解除可能) この状態でマクロを実行すると、指定した<br>
+コードが実行される直前に一時停止します。</p>
+<br>
+<h4 id="2-stop-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">(2) Stop ステートメント</h4>
+<p>プロシージャ内に Stop ステートメントを記述すると、その行でマクロが一時停止<br>
+します。機能としてはブレークポイントと同じですが、If ステートメントなど、<br>
+他の構文と組み合わせる事で、マクロの検証などに利用できます。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E6%99%82%E3%81%AE%E9%96%A2%E6%95%B0%E5%88%A9%E7%94%A8">● デバッグ時の関数利用</h3>
+<p>エラーの原因を調べる場合、プロパティや関数を利用して状況の把握や値の<br>
+変遷などを調べます。その際、以下のキーワードが有用です。</p>
+<blockquote>
+<p>・Value プロパティ：セルの入力値を取得<br>
+・Text プロパティ：セルの表示文字列を取得<br>
+・TypeName 関数：引数に指定したデータの型を返す<br>
+・IsNumeric 関数：引数に指定した値が数値かどうかを論理値で返す<br>
+・IsDate 関数：引数に指定した値が日付かどうかを論理値で返す<br></p>
+</blockquote>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2-1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+セルA1の値が日付だった場合に、西暦年を求めてセルB1に代入するマクロです。<br>
+空欄に入る適切な語句を入力しなさい。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> DebugMacro1()
+    <span class="hljs-keyword">If</span> 【     】(Range(<span class="hljs-string">"A1"</span>).Value) = <span class="hljs-literal">True</span> <span class="hljs-keyword">Then</span>
+        Range(<span class="hljs-string">"B1"</span>).Value = Year(Range(<span class="hljs-string">"A1"</span>).Value)
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2-2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+セルB1の値が数値以外だった場合に、入力を促すマクロです。<br>
+空欄に入る適切な語句を入力しなさい。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> DebugMacro2()
+    <span class="hljs-keyword">If</span> 【     】(Range(<span class="hljs-string">"B1"</span>).Value) = <span class="hljs-literal">False</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"B1セルに数値を入力して下さい"</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>以下に解答を記載しています。</p>
+<p><br><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">解答</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・3-1：IsDate<br>
+・3-2：IsNumeric<br>
+</div>
+<p><br><br></p>
+<hr>
+<p>VBA テキストはここで終了です。お疲れ様でした！</p>
+
+</body>
+</html>
